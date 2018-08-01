@@ -34,7 +34,14 @@ const addNote = (title, body) => {
 }
 
 const getNote = title => {
-    console.log(`Getting node with title ${title}`);
+    const existingNotes = getAllNotes();
+    const note = existingNotes.find(note => note.title === title)
+
+    if(!note) {
+        return console.log(`Could not find note with title "${title}"!`)
+    }
+
+    console.log(`Title: ${note.title}\nBody: ${note.body}`);
 }
 
 const getAllNotes = () => {
