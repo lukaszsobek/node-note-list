@@ -16,6 +16,12 @@ const addNote = (title, body) => {
     const existingNotes = getAllNotes();
     const saveFileName = getConfig().saveFile;
 
+    const isNoteUnique = !existingNotes.filter(note => note.title === title).length;
+
+    if(!isNoteUnique) {
+        return console.log("Duplicate note title, please choose a different one!");
+    }
+
     const newNote = { title, body };
     existingNotes.push(newNote);
     
