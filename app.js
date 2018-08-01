@@ -6,8 +6,6 @@ const notes = require("./notes");
 const argument = process.argv[2];
 const argv = yargs.argv;
 
-console.log(argv)
-
 switch(argument) {
     case "add":
         notes.addNote(argv.title, argv.body);

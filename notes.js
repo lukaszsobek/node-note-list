@@ -13,13 +13,18 @@ const addNote = (title, body) => {
         return;
     }
 
+    const existingNotes = getAllNotes();
     const saveFileName = getConfig().saveFile;
-    const fileContent = [{ title, body }];
+
+    const newNote = { title, body };
+    existingNotes.push(newNote);
     
-    fs.appendFileSync(
+    fs.writeFileSync(
         saveFileName,
-        JSON.stringify(fileContent)
+        JSON.stringify(existingNotes)
     );
+
+    console.log("New note added!");
 }
 
 const getNote = title => {
@@ -27,15 +32,19 @@ const getNote = title => {
 }
 
 const getAllNotes = () => {
-    console.log("really long list");
+    const saveFileName = getConfig().saveFile;
+    const fileContents = fs.readFileSync(saveFileName);
+    
+    if (!fileContents.length) {
+        return [];
+    }
+
+    return JSON.parse(fileContents);
 }
 
 const removeNote = title => {
     console.log(`removing note ${title}`);
 }
-
-
-
 
 module.exports = {
     addNote,
