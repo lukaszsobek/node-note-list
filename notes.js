@@ -49,7 +49,20 @@ const getAllNotes = () => {
 }
 
 const removeNote = title => {
-    console.log(`removing note ${title}`);
+    const existingNotes = getAllNotes();
+    const saveFileName = getConfig().saveFile;
+    const newNotes = existingNotes.filter(note => note.title !== title);
+
+    if(newNotes.length === existingNotes.length) {
+        return console.log(`Cannot remove note. Title "${title}" not found!`)
+    }
+
+    fs.writeFileSync(
+        saveFileName,
+        JSON.stringify(newNotes)
+    );
+
+    console.log(`Removing note with title "${title}".`);
 }
 
 module.exports = {
