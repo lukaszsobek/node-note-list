@@ -4,7 +4,13 @@ const yargs = require("yargs");
 const notes = require("./notes");
 
 const argument = process.argv[2];
-const argv = yargs.argv;
+const argv = yargs
+.command("list", "Lists all available notes")
+.command("add", "Adds a note")
+.command("read", "Returns the content of a selected note")
+.command("remove", "Permanently deletes a note")
+.help()
+.argv;
 
 switch(argument) {
     case "add":
@@ -12,11 +18,11 @@ switch(argument) {
         break;
 
     case "list":
-        notes.getAllNotes();
+        notes.listAllNotes();
         break;
 
     case "read":
-        notes.getNote(argv.title);
+        notes.displayNote(argv.title);
         break;
 
     case "remove":

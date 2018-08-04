@@ -33,7 +33,7 @@ const addNote = (title, body) => {
     console.log("New note added!");
 }
 
-const getNote = title => {
+const displayNote = title => {
     const existingNotes = getAllNotes();
     const note = existingNotes.find(note => note.title === title)
 
@@ -53,6 +53,15 @@ const getAllNotes = () => {
     }
 
     return JSON.parse(fileContents);
+}
+
+const listAllNotes = () => {
+    const existingNotes = getAllNotes();
+    console.log(`Number of notes: ${existingNotes.length}`);
+    console.log(`===================`);
+    existingNotes.forEach(({title, body}, i) => {
+        console.log(`Title: ${title}\nBody: ${body}\n---`);
+    });
 }
 
 const removeNote = title => {
@@ -75,6 +84,7 @@ const removeNote = title => {
 module.exports = {
     addNote,
     getAllNotes,
-    getNote,
+    displayNote,
+    listAllNotes,
     removeNote
 }
