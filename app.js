@@ -6,9 +6,32 @@ const notes = require("./notes");
 const argument = process.argv[2];
 const argv = yargs
 .command("list", "Lists all available notes")
-.command("add", "Adds a note")
-.command("read", "Returns the content of a selected note")
-.command("remove", "Permanently deletes a note")
+.command("add", "Adds a note", {
+    title: {
+        describe: "Heading of the note",
+        demand: true,
+        alias: "t"
+    },
+    body: {
+        describe: "Content of the note",
+        demand: true,
+        alias: "b"
+    }
+})
+.command("read", "Returns the content of a selected note",{
+    title: {
+        describe: "Shows a single note",
+        demand: true,
+        alias: "t"
+    }
+})
+.command("remove", "Permanently deletes a note",{
+    title: {
+        describe: "Removes a selected note",
+        demand: true,
+        alias: "t"
+    }
+})
 .help()
 .argv;
 
