@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const getConfig = () => {
     return JSON.parse(
-        fs.readFileSync("config.json")
+        fs.readFileSync("./src/config.json")
     );
 }
 

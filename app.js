@@ -1,7 +1,7 @@
 "use strict"
 
 const yargs = require("yargs");
-const notes = require("./notes");
+const notes = require("./src/notes");
 
 const argument = process.argv[2];
 const argv = yargs
@@ -54,6 +54,5 @@ switch(argument) {
 
     
     default:
-        console.log("Something else")
+        console.log("Use 'node app --help' to see a list of available commands.")
 }
-
