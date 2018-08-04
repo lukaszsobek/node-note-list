@@ -18,7 +18,7 @@ const argv = yargs
         alias: "b"
     }
 })
-.command("read", "Returns the content of a selected note",{
+.command("show", "Returns the content of a selected note",{
     title: {
         describe: "Shows a single note",
         demand: true,
@@ -44,7 +44,7 @@ switch(argument) {
         notes.listAllNotes();
         break;
 
-    case "read":
+    case "show":
         notes.displayNote(argv.title);
         break;
 

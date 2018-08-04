@@ -19,7 +19,9 @@ const addNote = (title, body) => {
     const isNoteUnique = !existingNotes.filter(note => note.title === title).length;
 
     if(!isNoteUnique) {
-        return console.log("Duplicate note title, please choose a different one!");
+        return console.error(`
+            Error: Duplicate note title, please choose a different title!
+        `);
     }
 
     const newNote = { title, body };
@@ -30,7 +32,14 @@ const addNote = (title, body) => {
         JSON.stringify(existingNotes)
     );
 
-    console.log("New note added!");
+    console.log(`
+        New note added!
+        ------------
+        Title: ${title}
+        Body: ${body}
+        ------------
+        Note count: ${existingNotes.length}
+    `);
 }
 
 const displayNote = title => {
@@ -38,10 +47,15 @@ const displayNote = title => {
     const note = existingNotes.find(note => note.title === title)
 
     if(!note) {
-        return console.log(`Could not find note with title "${title}"!`)
+        return console.log(`
+            Could not find note with title "${title}"!
+        `);
     }
 
-    console.log(`Title: ${note.title}\nBody: ${note.body}`);
+    console.log(`
+        Title: ${note.title}
+        Body: ${note.body}
+        `);
 }
 
 const getAllNotes = () => {
@@ -57,11 +71,15 @@ const getAllNotes = () => {
 
 const listAllNotes = () => {
     const existingNotes = getAllNotes();
-    console.log(`Number of notes: ${existingNotes.length}`);
-    console.log(`===================`);
+    console.log(`
+        Note count: ${existingNotes.length}
+        ------------`);
     existingNotes.forEach(({title, body}, i) => {
-        console.log(`Title: ${title}\nBody: ${body}\n---`);
+        console.log(`
+        (${i+1}) Title: ${title}
+        Body: ${body}`);
     });
+    console.log(``);
 }
 
 const removeNote = title => {
@@ -70,7 +88,9 @@ const removeNote = title => {
     const newNotes = existingNotes.filter(note => note.title !== title);
 
     if(newNotes.length === existingNotes.length) {
-        return console.log(`Cannot remove note. Title "${title}" not found!`)
+        return console.log(`
+            Cannot remove note. Title "${title}" not found!
+        `)
     }
 
     fs.writeFileSync(
@@ -78,7 +98,11 @@ const removeNote = title => {
         JSON.stringify(newNotes)
     );
 
-    console.log(`Removing note with title "${title}".`);
+    console.log(`
+        Removing note with title "${title}".
+        ------------
+        Note count ${newNotes.length}
+    `);
 }
 
 module.exports = {
