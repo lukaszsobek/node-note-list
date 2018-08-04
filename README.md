@@ -11,11 +11,12 @@ inside the folder with the downloaded app:
 - `node app --help` for a list of available commands
 - `node app list` lists all saved notes
 - `node app add -t "A title" -b "A body"` adds a new note
-- `node app remove -t "A title"` adds a new note
+- `node app remove -t "A title"` removes a note
 
 ## Additional notes
 - the app enforces unique note titles as a way of managing notes
 - you can also use `--title` instead of `-t` and `--body` instead of `-b` if you so choose
+
 
 ## Requirements
 - NodeJS - https://nodejs.org
